@@ -17,6 +17,10 @@
   - Will break into pieces
   - Shoots or dashes into the player
 
+-  Combat
+  - Player shoots auto when enemy is in range
+  - Can throw other cars off the road by pushing them
+
 - Collectables
   - Scrap metal (as currency)
 
