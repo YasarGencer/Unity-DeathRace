@@ -8,9 +8,11 @@ public class MainManager : MonoBehaviour
 
     [SerializeField] private GameManager _game;
     [SerializeField] private EventManager _event;
+    [SerializeField] private MenuManager _menu;
 
     public GameManager Game { get { return _game; } }
     public EventManager Event { get { return _event; } }
+    public MenuManager Menu { get { return _menu; } }
 
 
     private void Awake() {
@@ -25,5 +27,6 @@ public class MainManager : MonoBehaviour
 
         _event.Initialize(); 
         _game.Initialize();
+        _menu.Initialize();
     }
 }

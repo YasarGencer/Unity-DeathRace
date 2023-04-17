@@ -1,16 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine; 
 
 public class EventManager : MonoBehaviour {
 
 
-    public delegate void OnGameStart();
-    public event OnGameStart onGameStart;
-    public delegate void OnGameLoad();
-    public event OnGameLoad onGameLoad;
+    public delegate void OnGameStart(); 
 
     public delegate void OnGamePuase();
+    public delegate void OnGameUnPuase(); 
+
+    public event OnGameStart onGameStart; 
+
     public event OnGamePuase onGamePause;
-    public delegate void OnGameUnPuase();
     public event OnGameUnPuase onGameUnPause;
 
 
@@ -25,7 +26,9 @@ public class EventManager : MonoBehaviour {
     public void RunOnGameStart() {
         onGameStart();
     }
-    public void RunOnGameLoad() {
-        onGameLoad();
+    public void RunOnGameLoad() { 
+        onGameStart = null;
+        onGamePause = null;
+        onGameUnPause = null;
     }
 }

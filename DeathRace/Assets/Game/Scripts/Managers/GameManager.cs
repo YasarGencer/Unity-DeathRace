@@ -1,21 +1,27 @@
- using UnityEngine;
+using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static bool GamePause;
     public void Initialize() {
-        GamePause = false;
-         
-        MainManager.Instance.Event.onGamePause += OnPause;
-        MainManager.Instance.Event.onGamePause += OnUnPause;
-        MainManager.Instance.Event.onGameStart += OnStart;
+        GamePause = false; 
 
-        MainManager.Instance.Event.RunOnGameStart();
+        LoadScene(1);
     }
     public void OnStart() { 
     }
     public void OnPause() { 
     }
     public void OnUnPause() { 
+    }
+    public void LoadScene(int index) {
+        MainManager.Instance.Event.RunOnGameLoad();
+        SceneManager.LoadScene(index, LoadSceneMode.Additive);
+    }
+
+    public void StartGame() {
+        MainManager.Instance.Event.RunOnGameStart(); 
     }
 }
