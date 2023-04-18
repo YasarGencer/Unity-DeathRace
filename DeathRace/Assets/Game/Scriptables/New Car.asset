@@ -15,5 +15,4 @@ MonoBehaviour:
   Acceleration: 4
   BrakePower: 2
   MaxSpeed: 10
-  ActiveSpeed: 3.9359825
-  SwipeSpeed: 2
+  SwipeSpeed: 3

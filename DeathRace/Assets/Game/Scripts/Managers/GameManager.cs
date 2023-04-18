@@ -4,10 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isTest;
     public static bool GamePause;
     public void Initialize() {
-        GamePause = false; 
+        GamePause = false;
 
+        if (isTest)
+            return;
         LoadScene(2);
     }
     public void OnStart() { 

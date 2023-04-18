@@ -1,5 +1,4 @@
-using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine; 
 
 
 [CreateAssetMenu(fileName = "New Car", menuName = "ScriptableObjects/Car")]
@@ -8,7 +7,7 @@ public class PlayerStats : ScriptableObject {
     public float Acceleration;
     public float BrakePower;
     public float MaxSpeed;
-    [HideInInspector] public float ActiveSpeed;
+    public float ActiveSpeed { get; private set; }
     [Header("SWIPE")]
     public float SwipeSpeed;
     public void Initialize() {

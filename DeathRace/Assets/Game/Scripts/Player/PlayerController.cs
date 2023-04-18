@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] PlayerStats _stats;
-    PlayerForward _forward;
-    PlayerSwipe _swipe;
-    PlayerParts _parts;
+    Forward _forward;
+    Swipe _swipe;
+    Parts _parts;
     public PlayerStats Stats { get { return _stats; } }   
-    public PlayerForward Forward { get { return _forward; } }   
-    public PlayerSwipe Swipe { get { return _swipe; } }   
-    public PlayerParts Parts{ get { return _parts; } }   
+    public Forward Forward { get { return _forward; } }   
+    public Swipe Swipe { get { return _swipe; } }   
+    public Parts Parts{ get { return _parts; } }   
 
 
     private void Start() {
@@ -19,16 +19,16 @@ public class PlayerController : MonoBehaviour {
         MainManager.Instance.Event.onGamePause += OnUnPause;
         MainManager.Instance.Event.onGameStart += OnStart;
 
-        _forward = GetComponent<PlayerForward>();
-        _swipe = GetComponent<PlayerSwipe>();
-        _parts = GetComponent<PlayerParts>();
+        _forward = GetComponent<Forward>();
+        _swipe = GetComponent<Swipe>();
+        _parts = GetComponent<Parts>();
           
     }
     public void OnStart() { 
         _forward.Initialize(this);
         _swipe.Initialize(this);
         _stats.Initialize();
-        _parts.Initialize();
+        _parts.Initialize(this);
 
         Pause(true);
     }

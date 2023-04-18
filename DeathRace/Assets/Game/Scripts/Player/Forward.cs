@@ -3,23 +3,16 @@ using System;
 using UniRx; 
 using UnityEngine;
 
-public class PlayerForward : MonoBehaviour {
-    PlayerController _controller;
+public class Forward : APlayerComponent { 
 
-    public PathCreator PathCreator { get; private set; }
-    IDisposable _pathControllerRX;
+    public PathCreator PathCreator { get; private set; } 
     float _distance;
     
-    public void Initialize(PlayerController controller) {
-        _controller = controller;
+    public override void Initialize(PlayerController controller) {
+        base.Initialize(controller);
         PathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
-    }  
-    public void Pause(bool value) { 
-        _pathControllerRX?.Dispose();
-        if (value)
-            _pathControllerRX = Observable.EveryUpdate().TakeUntilDisable(this).Subscribe(PathRX);
     }
-    void PathRX(long obj) {
+    protected override void UpdateRX(long obj) {
         _distance += _controller.Stats.ActiveSpeed * Time.deltaTime;
         AllignToRoad();
         Accelerate();

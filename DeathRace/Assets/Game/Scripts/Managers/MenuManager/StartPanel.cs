@@ -17,6 +17,6 @@ public class StartPanel : APanel, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData) { 
         Close();
         MainManager.Instance.Game.StartGame();
-        MainManager.Instance.Menu.GamePanel.Open();
+        MainManager.Instance.Menu.GamePanel.Open(); 
     }
 }
