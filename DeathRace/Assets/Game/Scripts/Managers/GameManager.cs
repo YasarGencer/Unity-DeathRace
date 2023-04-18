@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public void OnUnPause() { 
     }
     public void LoadScene(int index) {
-        MainManager.Instance.Event.RunOnGameLoad();
+        MainManager.Instance.Event.RunOnGameLoad(); 
         SceneManager.LoadScene(index, LoadSceneMode.Additive);
     }
 

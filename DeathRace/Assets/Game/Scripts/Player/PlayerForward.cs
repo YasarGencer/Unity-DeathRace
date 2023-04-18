@@ -4,16 +4,15 @@ using UniRx;
 using UnityEngine;
 
 public class PlayerForward : MonoBehaviour {
+    PlayerController _controller;
 
-    [SerializeField] PathCreation.PathCreator _pathCreator;
-    [SerializeField] float _activeSpeed;
-    [SerializeField] float _maxSpeed;
-    [SerializeField] float _roadWidth;
-
+    public PathCreator PathCreator { get; private set; }
     IDisposable _pathControllerRX;
     float _distance;
-    public EndOfPathInstruction endOfPathInstruction;
-    public void Initialize() { 
+    
+    public void Initialize(PlayerController controller) {
+        _controller = controller;
+        PathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
     }  
     public void Pause(bool value) { 
         _pathControllerRX?.Dispose();
@@ -21,10 +20,14 @@ public class PlayerForward : MonoBehaviour {
             _pathControllerRX = Observable.EveryUpdate().TakeUntilDisable(this).Subscribe(PathRX);
     }
     void PathRX(long obj) {
-        _distance += _activeSpeed * Time.deltaTime;
-        transform.position = _pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
-        transform.rotation = _pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
-        Vector3 eulerRotation = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 0);
+        _distance += _controller.Stats.ActiveSpeed * Time.deltaTime;
+        AllignToRoad();
+        Accelerate();
+        //Debug.Log(_controller.Stats.ActiveSpeed);
+    }
+    void Accelerate() => _controller.Stats.Accelerate(); 
+    void AllignToRoad() {
+        transform.position = PathCreator.path.GetPointAtDistance(_distance, EndOfPathInstruction.Loop);
+        _controller.Parts.SetBody(PathCreator.path.GetRotationAtDistance(_distance, EndOfPathInstruction.Loop));
     }
 }
