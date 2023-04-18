@@ -28,16 +28,16 @@ public class GamePanel : APanel, IPointerDownHandler, IDragHandler, IPointerUpHa
             return;
 
         if (eventData.position.x > _firstTouch.x)
-            player.SwipeInfo(1);
+            player.Swipe.SwipeInfo(1);
         else if (eventData.position.x < _firstTouch.x)
-            player.SwipeInfo(-1);
+            player.Swipe.SwipeInfo(-1);
         else
-            player.SwipeInfo(0);
+            player.Swipe.SwipeInfo(0);
     }
 
     public void OnPointerUp(PointerEventData eventData) {
         if (player == null)
             return;
-        player.SwipeInfo(0);
+        player.Swipe.SwipeInfo(0);
     }
 }
