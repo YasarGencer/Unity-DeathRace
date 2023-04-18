@@ -22,8 +22,7 @@ public class PlayerParts : MonoBehaviour
     }     
     public void SetSwipeRotation(float value) {
 
-        if(value == 0) {
-            Debug.Log("GO STRAIGHT");
+        if(value == 0) { 
             if (currentWheels < 0) {
                 currentWheels += Time.deltaTime * 50;
                 currentBody2 += Time.deltaTime * 20;
@@ -31,12 +30,10 @@ public class PlayerParts : MonoBehaviour
                 currentWheels -= Time.deltaTime * 50;
                 currentBody2 -= Time.deltaTime * 20;
             }
-        } else if (value > 0) {
-            Debug.Log("TURN RIGHT");
+        } else if (value > 0) { 
             currentWheels += Time.deltaTime * 50;
             currentBody2 += Time.deltaTime * 20;
-        } else {
-            Debug.Log("TURN LEFT");
+        } else { 
             currentWheels -= Time.deltaTime * 50;
             currentBody2 -= Time.deltaTime * 20;
         } 

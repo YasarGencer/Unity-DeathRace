@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public void Initialize() {
         GamePause = false; 
 
-        LoadScene(1);
+        LoadScene(2);
     }
     public void OnStart() { 
     }
